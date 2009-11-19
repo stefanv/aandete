@@ -11,7 +11,4 @@ log = logging.getLogger(__name__)
 
 class MainController(BaseController):
     def home(self):
-        c.user = users.get_current_user()
-        c.login_url = users.create_login_url("/")
-        c.logout_url = users.create_logout_url("/")
         return render('home.mako')

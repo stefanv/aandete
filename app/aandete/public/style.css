@@ -10,6 +10,10 @@ h1, h2, h3 {
     color: #404047;
 }
 
+h3 {
+    margin-top: 0.5em;
+}
+
 .footer {
     border-top: solid 1px;
     border-bottom: solid 1px;
@@ -44,15 +48,61 @@ input, textarea {
     border: 2px solid #888;
 }
 
-.recipe_ingredients {
+.recipe_form_ingredients {
     width: 12em;
     position: absolute;
     margin-left: 26em;
     background: #ccf;
 }
 
-.recipe_submit {
+.recipe_form_submit {
     clear: both;
     width: 12em;
     background: #cfc;
+}
+
+.option_list {
+    font-size: 10pt;
+}
+
+.recipe_page {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    border: solid 4px #ccc;
+    background: url('/paper.png');
+    padding: 0em 1em 1em 1em;
+    width: 40em;
+}
+
+.recipe_instructions {
+    float: left;
+    width: 25em;
+    border: none;
+    padding: 0 0.5em 0.5em 0.5em;
+    margin-right: 1em;
+    overflow: auto;
+    font-style: italic;
+}
+
+.recipe_ingredients {
+    position: relative;
+    width: 11.5em;
+    border: solid 1px #aaa;
+    padding: 0 0.5em 0.5em 0.5em;
+    background: white;
+    overflow: auto;
+
+}
+
+.recipe_footer img {
+    width: 18em;
+    padding-top: 2em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.message {
+    padding: 0.5em;
+    border: solid 1px;
+    background: #ccccff;
 }
