@@ -9,6 +9,12 @@ class Recipe(db.Model):
 
     owner = db.UserProperty(auto_current_user_add=True, required=True)
 
+    @classmethod
+    def get_by_id(cls, id):
+        id = int(id)
+        key = db.Key.from_path('Recipe', id)
+        return db.Model.get(key)
+
 class Cookbook(db.Model):
     title = db.StringProperty(required=True)
     desc = db.Text()
