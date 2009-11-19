@@ -2,6 +2,7 @@
 
 __all__ = ['require_login', 'model_dict']
 
+from pylons.controllers.util import redirect_to
 from google.appengine.api import users
 
 from decorator import decorator
@@ -19,4 +20,3 @@ def model_dict(model):
         d[k] = getattr(model, k)
 
     return d
-
