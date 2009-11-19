@@ -41,7 +41,7 @@ class RecipeController(BaseController):
 
     def view(self, id=None):
         id = int(id)
-        c.message = request.params['message']
+        c.message = request.params.get('message', None)
 
         if not id:
             abort(404)
