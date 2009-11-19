@@ -120,8 +120,9 @@ input, textarea {
 }
 
 .recipe_footer img {
+    clear: both;
     width: 18em;
-    padding-top: 2em;
+    padding-top: 1em;
     display: block;
     margin-left: auto;
     margin-right: auto;
