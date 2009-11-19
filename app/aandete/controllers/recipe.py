@@ -83,10 +83,18 @@ class RecipeController(BaseController):
         html = render('/recipe_edit.mako')
         return htmlfill.render(html, model_dict(recipe))
 
+    def _own_recipe(self, recipe):
+        if not recipe.owner == users.get_current_user():
+            abort(403) # Forbidden
+
     @require_login
     @validate(schema=RecipeForm(), form='edit')
     def update(self, id):
         recipe = Recipe.get_by_id(id)
+        if not recipe:
+            abort(404) # Not found
+
+        self._own_recipe(recipe)
 
         for k, v in self.form_result.iteritems():
             setattr(recipe, k, v)
@@ -98,7 +106,26 @@ class RecipeController(BaseController):
     @require_login
     def delete(self, id):
         recipe = Recipe.get_by_id(id)
+        if not recipe:
+            abort(404) # Not found
+
+        self._own_recipe(recipe)
+
         title = recipe.title
         recipe.delete()
         redirect_to(url.current(action='all',
                                 message='Recipe "%s" deleted.' % title))
+
+    def search(self):
+        keywords = request.params.get('keywords', None)
+
+        if not keywords:
+            redirect_to(request.headers.get('REFERER', '/'))
+        else:
+            keywords = keywords.split(' ')
+
+        query = Recipe.all()
+        c.results = [r for r in query if \
+                     [k for k in keywords if k.lower() in r.title.lower()]]
+
+        return render('/search_results.mako')

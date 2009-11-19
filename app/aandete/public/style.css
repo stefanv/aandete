@@ -1,5 +1,6 @@
 body {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+//    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-family: Georgia, "Times New Roman", Times, serif;
     font-size: 13pt;
     color: #636669;
     background: #777;
@@ -153,4 +154,19 @@ input, textarea {
     background-color:#fff;
     border:8px solid #444;
     padding:12px;
+}
+
+#search {
+    float: right;
+    margin-right: 1em;
+}
+
+#search #keywords {
+    position: relative;
+    background: white;
+    width: 10em;
+}
+
+#search #submit {
+    width: 6em;
 }

@@ -11,6 +11,9 @@
 
 <div id="container">
 
+  <%namespace file="search.mako" import="search_box"/>
+  <div id="search">${search_box()}</div>
+
   <h1><a href="${url('/')}" style="text-decoration: none; color: #404047;">
       It's Supper Time!</a></h1>
 
