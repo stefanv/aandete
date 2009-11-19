@@ -116,16 +116,20 @@ class RecipeController(BaseController):
         redirect_to(url.current(action='all',
                                 message='Recipe "%s" deleted.' % title))
 
-    def search(self):
+    def search(self, user=None):
+        user = request.params.get('user', None)
         keywords = request.params.get('keywords', None)
 
-        if not keywords:
-            redirect_to(request.headers.get('REFERER', '/'))
-        else:
+        if user is not None:
+            c.results = [r for r in Recipe.all() if r.owner.email() == user]
+
+        elif keywords is not None:
             keywords = keywords.split(' ')
 
-        query = Recipe.all()
-        c.results = [r for r in query if \
-                     [k for k in keywords if k.lower() in r.title.lower()]]
+            query = Recipe.all()
+            c.results = [r for r in query if \
+                         [k for k in keywords if k.lower() in r.title.lower()]]
+        else:
+            redirect_to(request.headers.get('REFERER', '/'))
 
         return render('/search_results.mako')

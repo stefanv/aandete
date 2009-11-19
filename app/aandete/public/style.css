@@ -1,5 +1,4 @@
 body {
-//    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-family: Georgia, "Times New Roman", Times, serif;
     font-size: 13pt;
     color: #636669;
@@ -19,7 +18,6 @@ body {
     float: left;
     font-size: 20pt;
     font-style: italic;
-    font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .cover p {
@@ -31,7 +29,6 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: Georgia, "Times New Roman", Times, serif;
     font-weight: normal;
     color: #404047;
 }
@@ -169,4 +166,10 @@ input, textarea {
 
 #search #submit {
     width: 6em;
+}
+
+#search_results {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    width: 50em;
 }

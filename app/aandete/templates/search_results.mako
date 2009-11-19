@@ -5,16 +5,20 @@
 
 <h2>Search Results</h2>
 
-% if len(c.results) > 0:
+<div id="search_results">
 
 % for r in c.results:
-  <a href="${url(controller='recipe', action='view', id=r.key().id())}">
-  ${r.title}</a><br/>
+  <p><a href="${url(controller='recipe', action='view', id=r.key().id())}">
+  ${r.title}</a> by
+  <a href="${url(controller='recipe', action='search', user=r.owner.email())}">
+   ${r.owner.nickname()}</a><br/>
 
 % if r.text:
-    <blockquote><em>${r.text[:200]}...</em></blockquote><br/>
+    ${r.text[:200]}...</em>
 % endif
+
+  </p>
 
 % endfor
 
-% endif
+</div>
