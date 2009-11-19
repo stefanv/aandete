@@ -65,7 +65,6 @@ class RecipeController(BaseController):
     def save(self):
         self.form_result['owner'] = users.get_current_user()
 
-        r = Recipe(text='hello')
         r = Recipe(**self.form_result)
         r.put()
 
