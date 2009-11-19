@@ -37,9 +37,11 @@ The author of this recipe provided no instructions.
 <div class="recipe_ingredients">
 <h3><span style="text-decoration: underline;">Ingredients</span></h3>
 
+% if c.recipe.ingredients:
 % for i in c.recipe.ingredients.split('\n'):
 ${i}<br/>
 % endfor
+% endif
 </div>
 
 <div class="recipe_footer">
