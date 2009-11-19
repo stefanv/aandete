@@ -2,10 +2,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <link href="${url('/style.css')}" rel="stylesheet" type="text/css" media="screen"/>
+    ${h.stylesheet_link('/style.css')}
+    ${h.javascript_link('/jquery-1.3.2.min.js', 'jquery.debug.js')}
+    ${h.javascript_link('/jquery.simplemodal-1.3.3.min.js')}
     ${self.head_tags()}
   </head>
   <body>
+
+<div id="container">
+
   <h1><a href="${url('/')}" style="text-decoration: none; color: #404047;">
       It's Supper Time!</a></h1>
 
@@ -21,6 +26,7 @@
 
   <div class="footer">
 
+<p>
 % if not url.current() == '/':
   Back to <a href="${url('/')}">main page</a>.
 % else:
@@ -37,7 +43,19 @@
 % endif
 
     </span>
+
+<br/><br/>
+<span style="font-size: 9pt;">
+Front page image credits: Salad and tomatoes by <a
+href="http://www.flickr.com/people/floodkoff/">Michael
+Fludkov</a>. Black bean recipe by <a
+href="http://www.flickr.com/photos/29278394@N00/2832173460/">Anne
+Norman</a>.
+</span>
+
+    </p>
   </div>
 
+  </div> <!-- end container -->
   </body>
 </html>

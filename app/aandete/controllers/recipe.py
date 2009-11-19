@@ -33,14 +33,16 @@ class RecipeController(BaseController):
 
     @require_login
     def all(self):
+        c.message = request.params.get('message', None)
+
         query = Recipe.all()
-        query = query.filter('owner =', users.get_current_user())
+        query.filter('owner =', users.get_current_user())
+        query.order('title')
 
         c.recipes = query
         return render('/recipe_all.mako')
 
     def view(self, id=None):
-        id = int(id)
         c.message = request.params.get('message', None)
 
         if not id:
@@ -74,7 +76,6 @@ class RecipeController(BaseController):
 
     @require_login
     def edit(self, id):
-        id = int(id)
         recipe = Recipe.get_by_id(id)
 
         c.update_url = url.current(action='update', id=id)
@@ -85,8 +86,6 @@ class RecipeController(BaseController):
     @require_login
     @validate(schema=RecipeForm(), form='edit')
     def update(self, id):
-        id = int(id)
-
         recipe = Recipe.get_by_id(id)
 
         for k, v in self.form_result.iteritems():
@@ -95,3 +94,11 @@ class RecipeController(BaseController):
 
         redirect_to(url.current(action='view', id=id,
                                 message="Recipe updated."))
+
+    @require_login
+    def delete(self, id):
+        recipe = Recipe.get_by_id(id)
+        title = recipe.title
+        recipe.delete()
+        redirect_to(url.current(action='all',
+                                message='Recipe "%s" deleted.' % title))

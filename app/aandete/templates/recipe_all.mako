@@ -7,11 +7,16 @@
   No recipes found.
 % endif
 
-<ul>
+<p>
+% for i, r in enumerate(c.recipes):
+<a href="${url(controller='recipe', action='view', id=r.key().id())}">
+       ${r.title}</a>
 
-% for r in c.recipes:
-<li><a href="${url(controller='recipe', action='view', id=r.key().id())}">
-       ${r.title}</a></li>
+% if i != c.recipes.count() - 1:
+&bull;
+% endif
+
 % endfor
+</p>
 
 </ul>

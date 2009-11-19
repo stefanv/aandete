@@ -7,7 +7,8 @@
 <span class="option_list">
 <p><a href="${c.edit_url}">Edit</a> |
 
-   <a href="${c.rm_url}"> Delete</a> |
+   <a href="#" onclick="$('#confirm_delete').modal();">
+   Delete</a> |
 
    <a href="${c.add_url}">Add Recipe</a> |
 
@@ -15,6 +16,15 @@
 </p>
 </span>
 </%def>
+
+<div id="confirm_delete" style="display: none;">
+<h2>Delete <em>${c.recipe.title}</em>?</h2>
+Once the recipe has been deleted, it cannot be recovered.
+<ul>
+<li><a href="${c.rm_url}">Yes, delete this recipe.</a></li>
+<li><a href="#" class="simplemodal-close">No, don't delete the recipe.</a></li>
+</ul>
+</div>
 
 ${self.option_list()}
 
