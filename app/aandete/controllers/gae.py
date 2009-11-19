@@ -4,6 +4,7 @@ __all__ = ['require_login', 'model_dict']
 
 from pylons.controllers.util import redirect_to
 from google.appengine.api import users
+from pylons import url
 
 from decorator import decorator
 
