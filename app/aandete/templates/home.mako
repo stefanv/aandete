@@ -24,7 +24,7 @@
 % endfor
 
 <p>&nbsp;</p>
-<p><b>Neat Sites</b></p>
+<p><b>Yummy Sites</b></p>
 <a href="http://cookingforengineers.com/">Cooking for Engineers</a>
 
 </div>
