@@ -19,8 +19,8 @@
 
 <p><b>Latest Recipes:</b></p>
 
-% for r, user_link in c.latest:
-  <p>${r.title} by <a href="${user_link}">${r.owner.nickname()}</a></p>
+% for r, recipe_link, user_link in c.latest:
+  <p><a href="${recipe_link}">${r.title}</a> by <a href="${user_link}">${r.owner.nickname()}</a></p>
 % endfor
 
 </div>

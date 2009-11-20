@@ -15,7 +15,10 @@ class MainController(BaseController):
     def home(self):
         latest = Recipe.all().order('modified')
 
-        c.latest = [(r, url(controller='recipe', action='search',
+        c.latest = [(r,
+                     url(controller='recipe', action='view',
+                         id=r.key().id()),
+                     url(controller='recipe', action='search',
                             user=r.owner))
                     for r in latest]
 
