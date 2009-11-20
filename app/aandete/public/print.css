@@ -31,7 +31,8 @@
 
 #print_footer {
     border-top: 1px solid;
-    padding-top: 1em;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 9pt;
 }
