@@ -10,7 +10,7 @@
 % for r in c.results:
   <p><a href="${url(controller='recipe', action='view', id=r.key().id())}">
   ${r.title}</a> by
-  <a href="${url(controller='recipe', action='search', user=r.owner.email())}">
+  <a href="${url(controller='recipe', action='search', user=r.owner)}">
    ${r.owner.nickname()}</a><br/>
 
 % if r.text:

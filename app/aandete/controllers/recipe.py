@@ -121,7 +121,9 @@ class RecipeController(BaseController):
         keywords = request.params.get('keywords', None)
 
         if user is not None:
-            c.results = [r for r in Recipe.all() if r.owner.email() == user]
+            if not '@' in user: user += '@gmail.com'
+            user = users.User(user)
+            c.results = [r for r in Recipe.all() if r.owner == user]
 
         elif keywords is not None:
             keywords = keywords.split(' ')

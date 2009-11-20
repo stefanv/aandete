@@ -173,3 +173,13 @@ input, textarea {
     font-size: 11pt;
     width: 50em;
 }
+
+#sidebar {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    width: 18em;
+    float: left;
+    border-left: solid 2px #aaa;
+    padding-left: 1em;
+    padding-bottom: 1em;
+}

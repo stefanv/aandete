@@ -14,3 +14,13 @@
 <img src="${url('/castro_beans.jpg')}" width="300px"/>
 <p>Add a recipe</p></a>
 </div>
+
+<div id="sidebar">
+
+<p><b>Latest Recipes:</b></p>
+
+% for r, user_link in c.latest:
+  <p>${r.title} by <a href="${user_link}">${r.owner.nickname()}</a></p>
+% endfor
+
+</div>

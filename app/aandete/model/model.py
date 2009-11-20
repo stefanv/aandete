@@ -8,6 +8,7 @@ class Recipe(db.Model):
     photo = db.BlobProperty()
 
     owner = db.UserProperty(auto_current_user_add=True, required=True)
+    modified = db.DateTimeProperty(auto_now=True)
 
     @classmethod
     def get_by_id(cls, id):
