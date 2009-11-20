@@ -49,6 +49,8 @@
 
 <br/><br/>
 <span style="font-size: 9pt;">
+Contact the <a href="http://mentat.za.net">developer</a> or
+view the <a href="http://github.com/stefanv/aandete.git">source code</a>.
 Front page image credits: Salad and tomatoes by <a
 href="http://www.flickr.com/people/floodkoff/">Michael
 Fludkov</a>. Black bean recipe by <a
