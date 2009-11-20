@@ -17,10 +17,14 @@
 
 <div id="sidebar">
 
-<p><b>Latest Recipes:</b></p>
+<p><b>Latest Recipes</b></p>
 
 % for r, recipe_link, user_link in c.latest:
   <p><a href="${recipe_link}">${r.title}</a> by <a href="${user_link}">${r.owner.nickname()}</a></p>
 % endfor
+
+<p>&nbsp;</p>
+<p><b>Neat Sites</b></p>
+<a href="http://cookingforengineers.com/">Cooking for Engineers</a>
 
 </div>
