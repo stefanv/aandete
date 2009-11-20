@@ -6,6 +6,7 @@
     ${h.javascript_link('/jquery-1.3.2.min.js', 'jquery.debug.js')}
     ${h.javascript_link('/jquery.simplemodal-1.3.3.min.js')}
     ${self.head_tags()}
+    <title>Supper Time</title>
   </head>
   <body>
 
