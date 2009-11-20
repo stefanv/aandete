@@ -50,6 +50,9 @@ class RecipeController(BaseController):
 
         c.recipe = Recipe.get_by_id(id)
 
+        if not c.recipe:
+            abort(404)
+
         c.rm_url = url(controller='recipe', action='delete', id=id)
         c.edit_url = url(controller='recipe', action='edit', id=id)
         c.list_url = url(controller='recipe', action='all')
@@ -77,6 +80,9 @@ class RecipeController(BaseController):
     @require_login
     def edit(self, id):
         recipe = Recipe.get_by_id(id)
+
+        if not recipe:
+            abort(404)
 
         c.update_url = url.current(action='update', id=id)
 
