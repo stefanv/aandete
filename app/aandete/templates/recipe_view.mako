@@ -31,6 +31,16 @@ ${self.option_list()}
 <div class="recipe_page">
 <h2>${c.recipe.title}</h2>
 
+<div class="recipe_ingredients">
+<h3><span style="text-decoration: underline;">Ingredients</span></h3>
+
+% if c.recipe.ingredients:
+% for i in c.recipe.ingredients.split('\n'):
+${i}<br/>
+% endfor
+% endif
+</div>
+
 <div class="recipe_instructions">
 
 % if c.recipe.text:
@@ -42,16 +52,6 @@ ${par}<br/>
 % else:
 The author of this recipe provided no instructions.
 %endif
-</div>
-
-<div class="recipe_ingredients">
-<h3><span style="text-decoration: underline;">Ingredients</span></h3>
-
-% if c.recipe.ingredients:
-% for i in c.recipe.ingredients.split('\n'):
-${i}<br/>
-% endfor
-% endif
 </div>
 
 <div class="recipe_footer">

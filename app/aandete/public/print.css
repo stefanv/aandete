@@ -1,0 +1,37 @@
+#banner {
+    display: none;
+}
+
+#search {
+    display: none;
+}
+
+.option_list {
+    display: none;
+}
+
+.recipe_footer img {
+    display: none;
+}
+
+#footer {
+    display: none;
+}
+
+.recipe_ingredients {
+    float: right;
+    border: solid 1px;
+    margin-left: 1em;
+    padding: 0em 1em 1em 1em;
+}
+
+.recipe_instructions {
+    font-style: italic;
+}
+
+#print_footer {
+    border-top: 1px solid;
+    padding-top: 1em;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+}

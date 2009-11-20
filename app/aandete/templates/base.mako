@@ -3,6 +3,7 @@
 <html>
   <head>
     ${h.stylesheet_link('/style.css')}
+    ${h.stylesheet_link('/print.css', media='print')}
     ${h.javascript_link('/jquery-1.3.2.min.js', 'jquery.debug.js')}
     ${h.javascript_link('/jquery.simplemodal-1.3.3.min.js')}
     ${self.head_tags()}
@@ -15,7 +16,8 @@
   <%namespace file="search.mako" import="search_box"/>
   <div id="search">${search_box()}</div>
 
-  <h1><a href="${url('/')}" style="text-decoration: none; color: #404047;">
+  <h1 id="banner">
+    <a href="${url('/')}" style="text-decoration: none; color: #404047;">
       It's Supper Time!</a></h1>
 
 % if c.message:
@@ -28,7 +30,7 @@
 
     ${self.body()}
 
-  <div class="footer">
+  <div id="footer">
 
 <p>
 % if not url.current() == '/':
@@ -60,6 +62,12 @@ Norman</a>.
 </span>
 
     </p>
+  </div>
+
+  <div id="print_footer">
+    <% from paste.request import construct_url %>
+    Thanks for using Supper Time&mdash;enjoy your meal!<br/>
+    Find this recipe at <tt>${construct_url(request.environ)}</tt>
   </div>
 
   </div> <!-- end container -->

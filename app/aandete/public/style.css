@@ -37,7 +37,7 @@ h3 {
     margin-top: 0.5em;
 }
 
-.footer {
+#footer {
     clear: both;
     border-top: solid 5px #ddd;
     margin-top: 0.5em;
@@ -47,7 +47,7 @@ h3 {
     padding-bottom: 0.5em;
 }
 
-.footer p {
+#footer p {
     margin: 0px 0.5em 0em 0em;
 }
 
@@ -115,10 +115,11 @@ input, textarea {
 }
 
 .recipe_ingredients {
-    position: relative;
-    width: 12em;
+    float: right;
+    width: 12.5em;
     border: solid 1px #aaa;
     padding: 0 0.5em 0.5em 0.5em;
+    margin-bottom: 1em;
     background: white;
     overflow: auto;
 
@@ -192,4 +193,8 @@ input, textarea {
     padding-left: 1em;
     padding-bottom: 1.5em;
     margin-bottom: 1em;
+}
+
+#print_footer {
+    display: none;
 }
