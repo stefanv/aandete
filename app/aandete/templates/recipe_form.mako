@@ -9,14 +9,16 @@ recipe"</em> to proceed. The blue box is for listing ingredients.</span>
 <label>Title:</label>
 ${h.text('title', size=60)}<br/>
 
-<textarea class="recipe_form_ingredients" id="ingredients" name="ingredients"
-          cols="20" rows="10"></textarea>
-
 <label>Instructions:</label>
-${h.textarea('text', cols=60, rows=10)}<br/>
+${h.textarea('text', cols=60, rows=10,
+             class_="recipe_form_text")}<br/>
 
+${h.textarea('ingredients', cols="20", rows="10",
+             class_="recipe_form_ingredients")}
+
+<p>
 <input id="submit" name="submit" type="submit"
-       value="Save this recipe" class="recipe_form_submit" />
+       value="Save this recipe" class="recipe_form_submit" /></p>
 </form>
 
 </%def>
