@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 class MainController(BaseController):
     def home(self):
-        latest = Recipe.all().order('-modified')
+        latest = Recipe.all().order('-modified').fetch(5)
 
         c.latest = [(r,
                      url(controller='recipe', action='view',
