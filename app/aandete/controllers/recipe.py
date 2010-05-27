@@ -175,7 +175,8 @@ class RecipeController(BaseController):
             kwds = keywords.split(' ')
 
             results = [r for r in query if \
-                       [k for k in kwds if k.lower() in r.title.lower()]]
+                       [k for k in kwds if k.lower() in r.title.lower()
+                        or k.lower() in str(r.owner).lower()]]
         else:
             redirect_to(request.headers.get('REFERER', '/'))
 
