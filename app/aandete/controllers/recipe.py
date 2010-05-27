@@ -15,7 +15,24 @@ from aandete.controllers.gae import require_login, model_dict
 
 from formencode import htmlfill
 
+import math
+
 log = logging.getLogger(__name__)
+
+def paginate(query, page, limit=10):
+    offset = (page - 1) * limit
+    if isinstance(query, list):
+        total = len(query)
+        items = query[offset:offset + limit]
+    else:
+        # Query is a database result
+        total = query.count(None)
+        items = query.fetch(limit=limit, offset=offset)
+
+    pages = math.ceil(total / float(limit))
+
+    return items, pages
+
 
 class RecipeController(BaseController):
     def index(self):
@@ -32,15 +49,31 @@ class RecipeController(BaseController):
         return render('/recipe.mako')
 
     @require_login
-    def all(self):
+    def mine(self):
         c.message = request.params.get('message', None)
 
         query = Recipe.all()
         query.filter('owner =', users.get_current_user())
         query.order('title')
 
-        c.recipes = query
-        return render('/recipe_all.mako')
+        c.page = int(request.params.get('page', 1))
+        c.recipes, c.pages = paginate(query, c.page, limit=5)
+
+        c.page_url = url(controller='recipe', action='mine',
+                         id=None)
+        return render('/recipes.mako')
+
+    def browse(self):
+        c.message = request.params.get('message', None)
+
+        query = Recipe.all()
+        query.order('title')
+
+        c.page = int(request.params.get('page', 1))
+        c.recipes, c.pages = paginate(query, c.page, limit=5)
+        c.page_url = url(controller='recipe', action='browse', id=None)
+
+        return render('/recipes.mako')
 
     def view(self, id=None):
         c.message = request.params.get('message', None)
@@ -55,7 +88,7 @@ class RecipeController(BaseController):
 
         c.rm_url = url(controller='recipe', action='delete', id=id)
         c.edit_url = url(controller='recipe', action='edit', id=id)
-        c.list_url = url(controller='recipe', action='all')
+        c.list_url = url(controller='recipe', action='browse')
         c.add_url = url(controller='recipe', action='add')
 
         return render('/recipe_view.mako')
@@ -119,25 +152,44 @@ class RecipeController(BaseController):
 
         title = recipe.title
         recipe.delete()
-        redirect_to(url.current(action='all',
+        redirect_to(url.current(action='mine',
                                 message='Recipe "%s" deleted.' % title))
 
-    def search(self, user=None):
-        user = request.params.get('user', None)
-        keywords = request.params.get('keywords', None)
+    def search(self):
+        c.page = int(request.params.get('page', 1))
 
+        user = request.params.get('user', None)
+        if user == 'None': user = None
+
+        keywords = request.params.get('keywords', None)
+        if keywords == 'None': keywords = ''
+
+        query = Recipe.all()
+        query.order('title')
         if user is not None:
-            if not '@' in user: user += '@gmail.com'
-            user = users.User(user)
-            c.results = [r for r in Recipe.all() if r.owner == user]
+            if user and not '@' in user: user += '@gmail.com'
+            query.filter('owner =', users.User(user))
+            results = query
 
         elif keywords is not None:
-            keywords = keywords.split(' ')
+            kwds = keywords.split(' ')
 
-            query = Recipe.all()
-            c.results = [r for r in query if \
-                         [k for k in keywords if k.lower() in r.title.lower()]]
+            results = [r for r in query if \
+                       [k for k in kwds if k.lower() in r.title.lower()]]
         else:
             redirect_to(request.headers.get('REFERER', '/'))
 
-        return render('/search_results.mako')
+        c.user = user
+        c.keywords = keywords
+        c.recipes, c.pages = paginate(results, c.page, limit=5)
+
+        page_url_params = dict(controller='recipe', action='search',
+                               id=None)
+        if user is not None:
+            page_url_params['user'] = user
+        if keywords is not None:
+            page_url_params['keywords'] = keywords
+
+        c.page_url = url(**page_url_params)
+
+        return render('/recipes.mako')

@@ -106,7 +106,7 @@ input, textarea {
 
 .recipe_instructions {
     float: left;
-    width: 25em;
+    width: 24em;
     border: none;
     padding: 0 0.5em 0.5em 0em;
     margin-right: 1em;
@@ -197,4 +197,14 @@ input, textarea {
 
 #print_footer {
     display: none;
+}
+
+.page_current {
+    font-size: 130%;
+    color: black;
+    font-weight: bold;
+}
+
+.page_other {
+    font-size: 120%;
 }

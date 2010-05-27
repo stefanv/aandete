@@ -4,9 +4,9 @@
 </%def>
 
 <div class="cover">
-<a href="${url(controller='recipe', action='all')}">
+<a href="${url(controller='recipe', action='browse')}">
 <img src="${url('/fludkov_supper_small.jpg')}"/>
-<p>Browse my recipes</p></a>
+<p>Browse recipes</p></a>
 </div>
 
 <div class="cover">
