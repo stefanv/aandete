@@ -37,9 +37,9 @@ recipes</a>
    ${r.owner.nickname()}</a><br/>
 
 % if r.text:
-  ${r.text[:1000]}
+  ${r.text[:200]}
 
-% if len(r.text) > 1000:
+% if len(r.text) > 200:
 ...
 % endif
   </em>
