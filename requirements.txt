@@ -1,0 +1,4 @@
+pylons
+beaker
+decorator
+setuptools

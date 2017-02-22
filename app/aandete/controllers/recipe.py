@@ -1,7 +1,7 @@
 import logging
 
 from pylons import request, response, session, tmpl_context as c
-from pylons.controllers.util import abort, redirect_to
+from pylons.controllers.util import abort, redirect
 from pylons import url
 from pylons.decorators import validate
 
@@ -19,7 +19,7 @@ import math
 
 log = logging.getLogger(__name__)
 
-def paginate(query, page, limit=10):
+def paginate(query, page, limit=20):
     offset = (page - 1) * limit
     if isinstance(query, list):
         total = len(query)
@@ -70,7 +70,7 @@ class RecipeController(BaseController):
         query.order('title')
 
         c.page = int(request.params.get('page', 1))
-        c.recipes, c.pages = paginate(query, c.page, limit=5)
+        c.recipes, c.pages = paginate(query, c.page, limit=20)
         c.page_url = url(controller='recipe', action='browse', id=None)
 
         return render('/recipes.mako')
@@ -106,7 +106,7 @@ class RecipeController(BaseController):
         r = Recipe(**self.form_result)
         r.put()
 
-        redirect_to(url.current(action='view', id=r.key().id(),
+        redirect(url.current(action='view', id=r.key().id(),
                                 message='Recipe saved.'))
 
 
@@ -139,7 +139,7 @@ class RecipeController(BaseController):
             setattr(recipe, k, v)
         recipe.put()
 
-        redirect_to(url.current(action='view', id=id,
+        redirect(url.current(action='view', id=id,
                                 message="Recipe updated."))
 
     @require_login
@@ -152,7 +152,7 @@ class RecipeController(BaseController):
 
         title = recipe.title
         recipe.delete()
-        redirect_to(url.current(action='mine',
+        redirect(url.current(action='mine',
                                 message='Recipe "%s" deleted.' % title))
 
     def search(self):
@@ -178,7 +178,7 @@ class RecipeController(BaseController):
                        [k for k in kwds if k.lower() in r.title.lower()
                         or k.lower() in str(r.owner).lower()]]
         else:
-            redirect_to(request.headers.get('REFERER', '/'))
+            redirect(request.headers.get('REFERER', '/'))
 
         c.user = user
         c.keywords = keywords

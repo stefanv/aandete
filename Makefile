@@ -5,3 +5,7 @@ all:
 
 update:
 	PYTHONPATH="" appcfg.py update app
+
+libs:
+	PYTHONPATH="" pip install -t app/lib -r requirements.txt
+

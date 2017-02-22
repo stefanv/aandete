@@ -3,7 +3,7 @@
       <!-- add some head tags -->
 </%def>
 
-% if c.message:
+% if getattr(c, 'message', ''):
 <p>${c.message}
 % endif
 
@@ -12,10 +12,10 @@
 <p>
 <small>
 % if c.page_url.endswith('mine'):
-<a href="${url(controller='recipe', action='browse', user=c.user, keywords=c.keywords)}">View all
+<a href="${url(controller='recipe', action='browse', user=getattr(c, 'user', ''), keywords=getattr(c, 'keywords', ''))}">View all
 recipes</a>
 % else:
-<a href="${url(controller='recipe', action='mine', user=c.user, keywords=c.keywords)}">View only my
+<a href="${url(controller='recipe', action='mine', user=getattr(c, 'user', ''), keywords=getattr(c, 'keywords', ''))}">View only my
 recipes</a>
 % endif
 </small>
@@ -26,18 +26,18 @@ recipes</a>
 
 <p>
 
-% if len(c.recipes) <= 0:
-  No recipes found.
+% if len(getattr(c, 'recipes', [])) <= 0:
+No recipes found.
 % endif
 
-% for r in c.recipes:
+% for r in getattr(c, 'recipes', []):
   <p><a href="${url(controller='recipe', action='view', id=r.key().id())}">
   ${r.title}</a> by
   <a href="${url(controller='recipe', action='search', user=r.owner)}">
    ${r.owner.nickname()}</a><br/>
 
-% if r.text:
-  ${r.text[:200]}
+% if getattr(c, 'text', ''):
+  ${c.text[:200]}
 
 % if len(r.text) > 200:
 ...
@@ -60,7 +60,7 @@ recipes</a>
 <a href="${c.page_url + '&page=%d' % (int(c.page) - 1)}">Previous</a> &bull;
 % endif
 
-% for p in range(1, c.pages + 1):
+% for p in range(1, int(c.pages) + 1):
 
 % if p == c.page:
 <span class="page_current">${p}</span>

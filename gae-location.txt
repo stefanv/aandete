@@ -1,2 +1,2 @@
 # This file contains the path to the GAE SDK:
-/Users/stefan/src/googleappengine-read-only
+/Users/stefan/src/google_appengine

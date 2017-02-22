@@ -4,7 +4,7 @@
   <head>
     ${h.stylesheet_link('/style.css')}
     ${h.stylesheet_link('/print.css', media='print')}
-    ${h.javascript_link('/jquery-1.3.2.min.js', 'jquery.debug.js')}
+    ${h.javascript_link('/jquery-1.3.2.min.js')}
     ${h.javascript_link('/jquery.simplemodal-1.3.3.min.js')}
     ${self.head_tags()}
     <title>Supper Time</title>
@@ -20,12 +20,12 @@
     <a href="${url('/')}" style="text-decoration: none; color: #404047;">
       It's Supper Time!</a></h1>
 
-% if c.message:
+% if getattr(c, 'message', ''):
 <div class="message">${c.message}</div>
 % endif
 
-% if c.warning:
-<div class="warning">${c.message}</div>
+% if getattr(c, 'warning', ''):
+<div class="warning">${c.warning}</div>
 % endif
 
     ${self.body()}
@@ -41,11 +41,11 @@
 
     <span style="float: right;">
 
-% if g.users.get_current_user() is None:
-  Please proceed to <a href="${g.users.create_login_url('/')}">log in</a>.
+% if app_globals.users.get_current_user() is None:
+  Please proceed to <a href="${app_globals.users.create_login_url('/')}">log in</a>.
 % else:
-  Logged in as ${g.users.get_current_user()}.
-  <a href="${g.users.create_logout_url('/')}">Log out.</a>
+  Logged in as ${app_globals.users.get_current_user()}.
+  <a href="${app_globals.users.create_logout_url('/')}">Log out.</a>
 % endif
 
     </span>
